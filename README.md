@@ -1,22 +1,22 @@
 # Javscode
 
-Command Line Tool for exporting vscode java projects to [netbeans](https://netbeans.org/)
+Command Line Tool for exporting vscode java projects to netbeans.
 
 ## Usage
 
 ```bash
-powershell main.ps1 <project-name> <main-class>
+export <project-name> <main-class>
 ```
 
 ## Sample
 
 ```bash
-powershell main.ps1 sample Main
+export sample Main
 ```
 
-## Adding it to your powershell profile
+## Add it to your powershell profile
 
-- Copy the content of `main.p1`, and then paste it where your `Microsoft.Powershell_profile.ps1` is located, create one if you don't have it with `PS> New-Item –Path $Profile –Type File –Force`.
+- Copy the content of `main.p1`, and then paste it where your `Microsoft.Powershell_profile.ps1` file is located. Create one if you don't have it with `PS> New-Item –Path $Profile –Type File –Force`.
 
     > Usually in $HOME/Documents/WindowsPowerShell/
 

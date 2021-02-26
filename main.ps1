@@ -138,7 +138,8 @@ function checkArguments() {
 function export() {
     param(
         [string[]]
-        $exportArgs
+        $projectName,
+        $mainClass
     )
     if ($exportArgs -eq "--version") {
         Write-Host "Javscode v0.1-beta [Ssaylem Edition]" -ForegroundColor Green
@@ -147,8 +148,6 @@ function export() {
     }
     Write-Host "Javscode exporter" -BackgroundColor Blue -ForegroundColor Black
     Write-Host "" -BackgroundColor Black
-    $projectName = $exportArgs[0]
-    $mainClass = $exportArgs[1]
     $projectPath = checkArguments $projectName $mainClass
 
     # Create Netbeans folder and files
@@ -174,5 +173,3 @@ function export() {
     Write-Host "Creating manifest"
     Set-Content -Path "$projectPath/manifest.mf" -Value "Manifest-Version: 1.0"
 }
-
-export $args

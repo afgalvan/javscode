@@ -1,6 +1,6 @@
 # Javscode
 
-Command Line Tool for exporting **basic** Java projects in vscode to netbeans, made for college mates.
+Command Line Tool for exporting **basic** Java projects in vscode to netbeans, made for classmates.
 
 ## Usage
 

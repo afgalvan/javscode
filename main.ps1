@@ -144,7 +144,7 @@ function export() {
     if ($exportArgs -eq "--version") {
         Write-Host "Javscode v0.1-beta [Ssaylem Edition]" -ForegroundColor Green
         Write-Host ""
-        exit 0
+        return 0
     }
     Write-Host "Javscode exporter" -BackgroundColor Blue -ForegroundColor Black
     Write-Host "" -BackgroundColor Black

@@ -41,3 +41,6 @@ hs_err_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/java
 n
+/sample/nbproject/private/
+/sample/build/
+/test/nbproject/private/

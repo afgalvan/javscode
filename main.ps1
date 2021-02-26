@@ -125,31 +125,16 @@ function checkArguments() {
     $classPath = $projectPath + "/src/$mainClass"
     if (-not(Test-Path -Path $projectPath)) {
         Write-Host "Error: Project [$projectName] not found." -ForegroundColor Red
-        exit 1 
+        return 
     }
     if (-not(Test-Path -Path $classPath)) {
         Write-Host "Error: Main class [$mainClass] not found." -ForegroundColor Red
-        exit 1
+        return
     }
-
-    return $projectPath
+    nbprojectSetup
 }
 
-function export() {
-    param(
-        [string[]]
-        $projectName,
-        $mainClass
-    )
-    if ($exportArgs -eq "--version") {
-        Write-Host "Javscode v0.1-beta [Ssaylem Edition]" -ForegroundColor Green
-        Write-Host ""
-        return 0
-    }
-    Write-Host "Javscode exporter" -BackgroundColor Blue -ForegroundColor Black
-    Write-Host "" -BackgroundColor Black
-    $projectPath = checkArguments $projectName $mainClass
-
+function nbprojectSetup() {
     # Create Netbeans folder and files
     $nbproject = "$projectPath/nbproject"
     Write-Host "Creating nbproject configuration..."
@@ -172,4 +157,20 @@ function export() {
     projectXml "$projectName"
     Write-Host "Creating manifest"
     Set-Content -Path "$projectPath/manifest.mf" -Value "Manifest-Version: 1.0"
+}
+
+function export() {
+    param(
+        [string[]]
+        $projectName,
+        $mainClass
+    )
+    if ($projectName -eq "--version" -Or $projectName -eq "-v") {
+        Write-Host "Javscode v0.1-beta [Ssaylem Edition]" -ForegroundColor Green
+        Write-Host ""
+        return
+    }
+    Write-Host "Javscode exporter" -BackgroundColor Blue -ForegroundColor Black
+    Write-Host "" -BackgroundColor Black
+    $projectPath = checkArguments $projectName $mainClass
 }

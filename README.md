@@ -16,7 +16,7 @@ export sample Main
 
 ## Add it to your powershell profile
 
-- Copy the content of [`main.ps1`](./main.ps1), and then paste it where your `Microsoft.Powershell_profile.ps1` file is located. Create one if you don't have it with `PS> New-Item –Path $Profile –Type File –Force`.
+- Copy the content of [`main.ps1`](https://raw.githubusercontent.com/afgalvan/javscode/main/main.ps1), and then paste it where your `Microsoft.Powershell_profile.ps1` file is located. Create one if you don't have it with `PS> New-Item –Path $Profile –Type File –Force`.
 
     > Usually in $HOME/Documents/WindowsPowerShell/
 

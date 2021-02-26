@@ -20,8 +20,8 @@ export sample Main
 
     > Usually in $HOME/Documents/WindowsPowerShell/
 
-- Now, call the script with `export`, like:
+- Now, check if it's correct doing:
 
     ```bash
-    export <project-name> <main-class>
+    export --version
     ```

@@ -169,12 +169,14 @@ function export() {
     )
     if ($projectName -eq "--help" -Or $projectName -eq "-h") {
         Write-Host "  Help information.`n"
-        Write-Host "  Usage: export <project-name> <main-class>"
+        Write-Host "  Usage: " -NoNewline
+        Write-Host "export " -ForegroundColor Yellow -NoNewline
+        Write-Host "<project-name> <main-class>" -ForegroundColor Gray
         Write-Host "`n  Commands: "
-        Write-Host "    -h, --help         Displays help information for command usage."
-        Write-Host "    -v, --version      Show javscode current version."
-        Write-Host "    -r, --repository   Go to the GitHub repository."
-        Write-Host "    -i, --issue        Create a new GitHub issue."
+        Write-Host "    --help         Displays help information for command usage."
+        Write-Host "    --version      Show javscode current version."
+        Write-Host "    --repository   Go to the GitHub repository."
+        Write-Host "    --issue        Create a new GitHub issue."
         
         Write-Host "`n  Visit https://github.com/afgalvan/javscode`n"
         return

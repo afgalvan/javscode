@@ -107,13 +107,13 @@ function checkArguments() {
         $mainClass
     )
     # Check if valid arguments provided
-    if ($null -eq $projectName) {
+    if ([string]::IsNullOrEmpty($projectName)) {
         Write-Host "Error: Project name not provided." -ForegroundColor Red
-        exit 1
+        return
     }
-    elseif ($null -eq $mainClass) {
+    elseif ([string]::IsNullOrEmpty($mainClass)) {
         Write-Host "Error: Main class not provided." -ForegroundColor Red
-        exit 1
+        return
     }
     if (-not($mainClass.EndsWith(".java"))) {
         $mainClass += ".java"
@@ -155,22 +155,47 @@ function nbprojectSetup() {
     Add-Content -Path "$nbproject/project.properties" -Value "main.class=$mainClassWithoutExtension"
     Write-Host "Creating project.xml..."
     projectXml "$projectName"
-    Write-Host "Creating manifest"
+    Write-Host "Creating manifest..."
     Set-Content -Path "$projectPath/manifest.mf" -Value "Manifest-Version: 1.0"
+    Write-Host "`nProject succesfully configured to be runned on netbeans!" -ForegroundColor Green
 }
 
 function export() {
     param(
-        [string[]]
+        [string]
         $projectName,
+        [string]
         $mainClass
     )
+    if ($projectName -eq "--help" -Or $projectName -eq "-h") {
+        Write-Host "  Help information.`n"
+        Write-Host "  Usage: export <project-name> <main-class>"
+        Write-Host "`n  Commands: "
+        Write-Host "    -h, --help         Displays help information for command usage."
+        Write-Host "    -v, --version      Show javscode current version."
+        Write-Host "    -r, --repository   Go to the GitHub repository."
+        Write-Host "    -i, --issue        Create a new GitHub issue."
+        
+        Write-Host "`n  Visit https://github.com/afgalvan/javscode`n"
+        return
+    }
     if ($projectName -eq "--version" -Or $projectName -eq "-v") {
         Write-Host "Javscode v0.1-beta [Ssaylem Edition]" -ForegroundColor Green
         Write-Host ""
         return
     }
+    if ($projectName -eq "--repository" -Or $projectName -eq "-r") {
+        Start-Sleep 0.4
+        Start-Process "https://github.com/afgalvan/javscode#javscode"
+        return
+    }
+    if ($projectName -eq "--issue" -Or $projectName -eq "-i") {
+        Start-Sleep 0.4
+        Start-Process "https://github.com/afgalvan/javscode/issues/new"
+        return
+    }
+
     Write-Host "Javscode exporter" -BackgroundColor Blue -ForegroundColor Black
     Write-Host "" -BackgroundColor Black
-    $projectPath = checkArguments $projectName $mainClass
+    checkArguments $projectName $mainClass
 }
